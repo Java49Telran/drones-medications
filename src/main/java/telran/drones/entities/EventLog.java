@@ -6,6 +6,8 @@ import lombok.*;
 @Entity
 @RequiredArgsConstructor
 @NoArgsConstructor
+@Table(name="logs")
+@Getter
 public class EventLog {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)

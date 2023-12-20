@@ -16,12 +16,12 @@ import lombok.extern.slf4j.Slf4j;
 @ControllerAdvice
 @Slf4j
 public class GlobalExceptionsHandler {
-	
+	public static final String ERROR_MESSAGES_DELIMITER=";";
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	ResponseEntity<String> handlerMethodArgument(MethodArgumentNotValidException e) {
 		List<ObjectError> errors = e.getAllErrors();
 		String body = errors.stream().map(err -> err.getDefaultMessage())
-				.collect(Collectors.joining(";"));
+				.collect(Collectors.joining(ERROR_MESSAGES_DELIMITER));
 		return errorResponse(body, HttpStatus.BAD_REQUEST);
 	}
 	private ResponseEntity<String> errorResponse(String body, HttpStatus status) {

@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import telran.drones.dto.*;
 import telran.drones.exceptions.DroneAlreadyExistException;
 import telran.drones.service.DronesService;
+import telran.exceptions.GlobalExceptionsHandler;
 
 import static telran.drones.api.ConstraintConstants.*;
 import static telran.drones.api.ServiceExceptionMessages.*;
@@ -50,7 +51,7 @@ class DronesControllerTest {
 	ObjectMapper mapper;
 
 @Test
-@DisplayName(REGISTER_DRONE_NORMAL)
+@DisplayName("Controller:" + REGISTER_DRONE_NORMAL)
 	void testDroneRegisterNormal() throws Exception{
 		when(dronesService.registerDrone(droneDto)).thenReturn(droneDto);
 		String droneJSON = mapper.writeValueAsString(droneDto);
@@ -61,7 +62,7 @@ class DronesControllerTest {
 	}
 
 	@Test
-	@DisplayName(REGISTER_DRONE_MISSING_FIELDS)
+	@DisplayName("Controller:" + REGISTER_DRONE_MISSING_FIELDS)
 	void testDronRegisterMissingFields() throws Exception {
 		String droneJSON = mapper.writeValueAsString(droneDtoMissingFields);
 		String response = mockMvc
@@ -70,15 +71,15 @@ class DronesControllerTest {
 		assertErrorMessages(response, errorMessagesMissingFields);
 	}
 
-	private void assertErrorMessages(String response, String[] errorMessages) {
-		String [] actualMessages = response.split(";");
+	private void assertErrorMessages(String response, String[] expectedMessages) {
+		String [] actualMessages = response.split(GlobalExceptionsHandler.ERROR_MESSAGES_DELIMITER);
 		Arrays.sort(actualMessages);
-		Arrays.sort(errorMessages);
-		assertArrayEquals(errorMessages, actualMessages);
+		Arrays.sort(expectedMessages);
+		assertArrayEquals(expectedMessages, actualMessages);
 	}
 
 	@Test
-	@DisplayName(REGISTER_DRONE_VALIDATION_VIOLATION)
+	@DisplayName("Controller:" + REGISTER_DRONE_VALIDATION_VIOLATION)
 	void testDronRegisterWrongFields() throws Exception {
 		String droneJSON = mapper.writeValueAsString(droneDtoWrongFields);
 		String response = mockMvc
@@ -88,7 +89,7 @@ class DronesControllerTest {
 	}
 
 @Test
-@DisplayName(REGISTER_DRONE_ALREADY_EXISTS)
+@DisplayName("Controller:" + REGISTER_DRONE_ALREADY_EXISTS)
 void testDroneRegisterAlreadyExists() throws Exception{
 	when(dronesService.registerDrone(droneDto)).thenThrow(new DroneAlreadyExistException());
 	String droneJSON = mapper.writeValueAsString(droneDto);

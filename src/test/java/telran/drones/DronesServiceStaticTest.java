@@ -168,7 +168,6 @@ class DronesServiceStaticTest {
 		assertEquals(3, resultMap.size());
 		assertEquals(1, resultMap.get(DRONE1));
 		assertEquals(1, resultMap.get(DRONE2));
-		
 		assertEquals(0, resultMap.get(DRONE3));
 		
 		

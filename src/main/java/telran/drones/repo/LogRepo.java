@@ -15,7 +15,7 @@ public interface LogRepo extends JpaRepository<EventLog, Long> {
 
 	List<EventLog> findByDroneNumber(String droneNumber);
 @Query("select d.number as number, count(log.drone) as amount from EventLog log"
-		+ "  right outer join log.drone d "
+		+ " right  join log.drone d "
 		+ " where d.state='LOADING' or log.drone is null group by d.number "
 		+ "order by count(d.state) ")
 	List<DroneMedicationsAmount> findDronesAmounts();

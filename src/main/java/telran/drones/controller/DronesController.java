@@ -30,18 +30,19 @@ public class DronesController {
     List<DroneDto> getAvailableDrones() {
     	return dronesService.checkAvailableDrones();
     }
-    @GetMapping(UrlConstants.GET_DRONE_MEDICATIONS + "{droneNumber}")
-    List<MedicationDto> getDroneMedications(@PathVariable String droneNumber) {
+    @GetMapping(UrlConstants.GET_DRONE_MEDICATIONS + "{" + UrlConstants.DRONE_NUMBER_IN_PATH + "}")
+    List<MedicationDto> getDroneMedications(@PathVariable(name = UrlConstants.DRONE_NUMBER_IN_PATH)
+    String droneNumber) {
     	log.debug("received: drone number {}", droneNumber );
     	return dronesService.checkMedicationItems(droneNumber);
     }
-    @GetMapping(UrlConstants.GET_DRONE_BATTERY_CAPACITY + "{droneNumber}")
-    int getDroneBatteryCapacity(@PathVariable String droneNumber) {
-    	log.debug("received: drone number {}", droneNumber );
-    	return dronesService.checkBatteryLevel(droneNumber);
+    @GetMapping(UrlConstants.GET_DRONE_BATTERY_CAPACITY + "{" + UrlConstants.DRONE_NUMBER_IN_PATH + "}")
+    int getDroneBatteryCapacity(@PathVariable(name = UrlConstants.DRONE_NUMBER_IN_PATH) String number) {
+    	log.debug("received: drone number {}", number );
+    	return dronesService.checkBatteryLevel(number);
     }
-    @GetMapping(UrlConstants.GET_DRONE_LOGS + "{droneNumber}")
-    List<LogDto> getDroneLogs(@PathVariable String droneNumber) {
+    @GetMapping(UrlConstants.GET_DRONE_LOGS + "{" + UrlConstants.DRONE_NUMBER_IN_PATH + "}")
+    List<LogDto> getDroneLogs(@PathVariable(name = UrlConstants.DRONE_NUMBER_IN_PATH) String droneNumber) {
     	log.debug("received: drone number {}", droneNumber );
     	return dronesService.checkLogs(droneNumber);
     }

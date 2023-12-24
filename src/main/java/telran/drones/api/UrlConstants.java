@@ -8,4 +8,5 @@ String GET_DRONE_MEDICATIONS = DRONES + "/medications/";
 String GET_DRONE_BATTERY_CAPACITY = DRONES + "/battery/capacity/";
 String GET_DRONE_LOGS = DRONES + "/logs/";
 String GET_DRONES_MEDICATIONS_AMOUNTS = DRONES + "/meications/amounts/";
+String DRONE_NUMBER_IN_PATH = "droneNumber";
 }

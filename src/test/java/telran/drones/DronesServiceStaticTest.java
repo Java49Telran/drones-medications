@@ -135,8 +135,7 @@ class DronesServiceStaticTest {
 	void checkBatteryLevelDronNotFound() {
 		assertThrowsExactly(DroneNotFoundException.class, ()->dronesService.checkBatteryLevel(DRONE4));
 	}
-//	List<LogDto> checkLogs(String droneNumber);
-//	List<DroneMedicationsAmount> checkDronesMedicationItemsAmounts();
+
 	@Test
 	@DisplayName(SERVICE_TEST + TestDisplayNames.CHECK_LOGS_NORMAL)
 	void checkLogsNormal() {
@@ -166,9 +165,10 @@ class DronesServiceStaticTest {
 		Map<String, Long> resultMap =
 				dronesService.checkDronesMedicationItemsAmounts().stream()
 				.collect(Collectors.toMap(da -> da.getNumber(), da -> da.getAmount()));
+		assertEquals(3, resultMap.size());
 		assertEquals(1, resultMap.get(DRONE1));
 		assertEquals(1, resultMap.get(DRONE2));
-		assertEquals(3, resultMap.size());
+		
 		assertEquals(0, resultMap.get(DRONE3));
 		
 		

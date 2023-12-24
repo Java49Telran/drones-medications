@@ -15,5 +15,5 @@ String MISSING_MEDICATION_NAME = "missing Medication Name";
 String MEDICATION_NAME_REGEXP = "[\\w-]+";
 String MAX_WEIGHT_VIOLATION = "Weight cannot be greater than " + MAX_WEIGHT;
 String MAX_PERCENTAGE_VIOLATION = "Percent value cannot be greater than 100";
-
+String WRONG_MEDICATION_CODE_MESSAGE = "Medication code contains disallowed symbols";
 }

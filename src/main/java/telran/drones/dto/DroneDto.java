@@ -4,10 +4,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import static telran.drones.api.ConstraintConstants.*;
 @AllArgsConstructor
 @Data
+@NoArgsConstructor
 public class DroneDto {
 	 
 	@Size(max=MAX_DRONE_NUMBER_SIZE, message=DRONE_NUMBER_WRONG_LENGTH)

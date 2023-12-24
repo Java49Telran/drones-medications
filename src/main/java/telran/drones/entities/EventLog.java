@@ -3,6 +3,7 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 import lombok.*;
+import telran.drones.dto.LogDto;
 @Entity
 @RequiredArgsConstructor
 @NoArgsConstructor
@@ -21,6 +22,8 @@ long id;
 @Temporal(TemporalType.TIMESTAMP)
 @Column(nullable = false, updatable = false)
 @NonNull LocalDateTime timestamp;
-
+public LogDto build() {
+	return new LogDto(timestamp, drone.number, drone.state, drone.batteryCapacity, medication.code);
+}
 
 }

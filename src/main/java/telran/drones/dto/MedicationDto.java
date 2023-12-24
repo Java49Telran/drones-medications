@@ -2,9 +2,11 @@ package telran.drones.dto;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import static telran.drones.api.ConstraintConstants.*;
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class MedicationDto {
 	 

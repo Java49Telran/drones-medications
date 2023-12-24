@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import telran.drones.api.PropertiesNames;
@@ -30,6 +31,8 @@ final LogRepo logRepo;
 final ModelMapper modelMapper;
 @Value("${" + PropertiesNames.CAPACITY_THRESHOLD + ":25}")
 byte capacityThreshold;
+@Value("${" + PropertiesNames.PERIODIC_UNIT_MICROS + ":100}")
+long millisPerTimeUnit;
 
 	@Override
 	@Transactional
@@ -118,6 +121,24 @@ byte capacityThreshold;
 	public List<DroneMedicationsAmount> checkDronesMedicationItemsAmounts() {
 		
 		return logRepo.findDronesAmounts();
+	}
+	@PostConstruct
+	void periodicTask() {
+		Thread thread = new Thread(() -> {
+			try {
+				while(true) {
+					Thread.sleep(millisPerTimeUnit);
+				//TODO processing event logs for each time unit
+				//Just stub method to be replaced with a real one in the HW #71
+				log.trace("Kuku");
+				}
+				
+			} catch (InterruptedException e) {
+				//Interruptions are not implemented
+			}
+		});
+		thread.setDaemon(true);
+		thread.start();
 	}
 
 }

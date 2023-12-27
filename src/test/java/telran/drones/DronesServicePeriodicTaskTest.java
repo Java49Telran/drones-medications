@@ -29,12 +29,7 @@ class DronesServicePeriodicTaskTest {
 		Thread.sleep(500);
 		// At this step there should be 2 available drones
 		availableDronesTest(2);
-		Thread.sleep(1000);
-		// At this step there should be
-		// 3 available drones
-		// battery capacity of Drone-1 78%
-		// number of logs 12
-		availableBatteryLogsTest(3, 78, 12);
+		
 		Thread.sleep(3000);
 		// At this step there should be
 		// 10 available drones

@@ -29,7 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 @SpringBootTest(properties = {PropertiesNames.PERIODIC_UNIT_MILLIS  + "=1000000"})
-@Sql(scripts = "test_data.sql")
+@Sql(scripts = "classpath:test_data.sql")
 //('Drone-1', 'Middleweight', 300, 100, 'IDLE'),
 //('Drone-2', 'Middleweight', 300, 20, 'IDLE'),
 //('Drone-3', 'Middleweight', 300, 100, 'LOADING');
@@ -153,7 +153,7 @@ class DronesServiceStaticTest {
 	}
 	@Test
 	@DisplayName(SERVICE_TEST + TestDisplayNames.CHECK_DRONES_ITEMS_AMOUNT)
-	@Sql(scripts = {"test_data_normal_idle.sql"}) //for avoiding states mismatching
+	@Sql(scripts = {"classpath:test_data_normal_idle.sql"}) //for avoiding states mismatching
 	//('Drone-1', 'Middleweight', 300, 100, 'IDLE'),
 	//('Drone-2', 'Middleweight', 300, 100, 'IDLE'),
 	//('Drone-3', 'Middleweight', 300, 100, 'IDLE');

@@ -16,7 +16,7 @@ Running Instructions
    6.3 drones/medications/{droneNumber} GET request
    6.4 drones/battery/capacity/{droneNumber} GET request
    6.5 drones/logs/{droneNumber} GET request
-   6.6 drones/medications/amounts GET request for getting how many mediacations there were delivered by each drone
+   6.6 drones/items/amounts GET request for getting how many mediacations there were delivered by each drone
 7. Predefined DB is created by the script
    insert into drones (number, model, weight_limit, battery_capacity, state) 
 	values

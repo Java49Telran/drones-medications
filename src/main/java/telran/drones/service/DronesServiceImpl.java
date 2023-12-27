@@ -90,7 +90,7 @@ public class DronesServiceImpl implements DronesService {
 		if (!droneRepo.existsById(droneNumber)) {
 			throw new DroneNotFoundException();
 		}
-		List<EventLog> logs = logRepo.findByDroneNumberAndDroneState(droneNumber, State.LOADING);
+		List<EventLog> logs = logRepo.findByDroneNumberAndState(droneNumber, State.LOADING);
 		log.trace("found following logs: {}", logs.stream().map(EventLog::build).toList());
 		return logs.stream().map(el -> modelMapper.map(el.getMedication(), MedicationDto.class)).toList();
 	}
@@ -154,7 +154,7 @@ public class DronesServiceImpl implements DronesService {
 		batteryCapacity = drone.getBatteryCapacity();
 
 		log.trace("after processing - drone: {}, battery capacity: {}, state: {}", droneNumber, batteryCapacity, state);
-		droneRepo.flush();
+		
 
 	}
 
@@ -166,7 +166,7 @@ public class DronesServiceImpl implements DronesService {
 			EventLog eventLog = new EventLog(drone, lastEventLog.getMedication(), LocalDateTime.now(),
 					drone.getState(), drone.getBatteryCapacity());
 			logRepo.save(eventLog);
-			log.trace("saved ");
+			log.trace("saved event log: {}", eventLog.build());
 		}
 
 	}

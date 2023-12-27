@@ -23,6 +23,7 @@ long id;
 @Temporal(TemporalType.TIMESTAMP)
 @Column(nullable = false, updatable = false)
 @NonNull LocalDateTime timestamp;
+@Enumerated(EnumType.STRING)
 @NonNull State state;
 @Column(name="battery_capacity")
 @NonNull Byte batteryCapacity;

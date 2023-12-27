@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import lombok.*;
 import telran.drones.dto.LogDto;
+import telran.drones.dto.State;
 @Entity
 @RequiredArgsConstructor
 @NoArgsConstructor
@@ -22,8 +23,11 @@ long id;
 @Temporal(TemporalType.TIMESTAMP)
 @Column(nullable = false, updatable = false)
 @NonNull LocalDateTime timestamp;
+@NonNull State state;
+@Column(name="battery_capacity")
+@NonNull Byte batteryCapacity;
 public LogDto build() {
-	return new LogDto(timestamp, drone.number, drone.state, drone.batteryCapacity, medication.code);
+	return new LogDto(timestamp, drone.number, state, batteryCapacity, medication.code);
 }
 
 }

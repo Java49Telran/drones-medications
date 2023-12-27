@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
-@SpringBootTest(properties = {PropertiesNames.PERIODIC_UNIT_MICROS  + "=1000000"})
+@SpringBootTest(properties = {PropertiesNames.PERIODIC_UNIT_MILLIS  + "=1000000"})
 @Sql(scripts = "test_data.sql")
 //('Drone-1', 'Middleweight', 300, 100, 'IDLE'),
 //('Drone-2', 'Middleweight', 300, 20, 'IDLE'),

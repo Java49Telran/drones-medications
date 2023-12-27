@@ -19,6 +19,7 @@ public class DronesConfiguration {
 	    .setFieldMatchingEnabled(true);
 		return modelMapper;
 	}
+	@Bean
 	Map<State, State> getMovesMap() {
 		Map<State, State> res = new HashMap<>();
 		res.put(State.LOADING, State.LOADED);
